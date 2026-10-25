@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị Admin - Bình Gia</title>
+    <!-- Sử dụng Bootstrap để giao diện gọn gàng và dễ nhìn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Trang Quản Trị - Danh Sách Người Đăng Ký</h2>
+            <a href="/" class="btn btn-outline-secondary">Về trang chủ</a>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Loại hồ sơ</th>
+                            <th>Tên lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Dữ liệu người dùng sẽ được tải động bằng JavaScript ở đây -->
+                        <tr>
+                            <td colspan="4" class="text-center">Đang tải dữ liệu...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Đoạn mã JavaScript để lấy dữ liệu từ server và hiển thị lên bảng -->
+    <script>
+        async function fetchUsers() {
+            try {
+                const response = await fetch('/api/users'); // Đường dẫn API lấy danh sách người dùng từ server
+                if (!response.ok) {
+                    throw new Error('Không thể tải dữ liệu từ máy chủ.');
+                }
+                const users = await response.json();
+                const tbody = document.getElementById('userTableBody');
+                tbody.innerHTML = '';
+
+                if (users.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center">Chưa có người dùng nào đăng ký.</td></tr>';
+                    return;
+                }
+
+                users.forEach((user, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${user.username || 'Không rõ'}</td>
+                        <td>${user.profileType || 'Chưa chọn'}</td>
+                        <td>${user.className || 'Không có'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Lỗi:', error);
+                document.getElementById('userTableBody').innerHTML = '<tr><td colspan="4" class="text-center text-danger">Lỗi khi tải dữ liệu người dùng.</td></tr>';
+            }
+        }
+
+        // Tự động gọi hàm tải dữ liệu khi trang được mở
+        document.addEventListener('DOMContentLoaded', fetchUsers);
+    </script>
+</body>
+</html>
