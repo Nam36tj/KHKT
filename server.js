@@ -339,3 +339,5 @@ app.listen(PORT, () => {
     console.log('Gợi ý: đặt ADMIN_USERNAME=<tên tài khoản> để cho một tài khoản quyền xóa mọi ảnh.');
   }
 });
+app.use(express.static(PUBLIC_DIR));
+app.use(express.static(__dirname));
