@@ -1,0 +1,73 @@
+/* ===== Tài khoản trên thanh điều hướng ===== */
+.auth{display:flex;align-items:center;gap:10px;margin-left:24px;color:#f1ead2;font-size:14.5px}
+.auth .hello{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.auth .btn{width:auto;padding:8px 18px;font-size:14px}
+
+/* ===== Khu ảnh cộng đồng ===== */
+.community{margin-top:64px;padding-top:44px;border-top:1px dashed rgba(232,184,46,.4)}
+.community-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-bottom:26px}
+.community-head h3{color:#fff;font-size:1.5rem}
+.community-head p{color:#c8d8d0;max-width:560px;font-size:15px}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.photo-card{margin:0;background:#fff;border-radius:14px;overflow:hidden;color:var(--ink);box-shadow:0 8px 20px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.photo-btn{display:block;width:100%;border:0;padding:0;background:#e9e2cc;cursor:zoom-in;aspect-ratio:4/3;overflow:hidden}
+.photo-btn img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.photo-btn:hover img{transform:scale(1.05)}
+.photo-info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.photo-info p{font-size:14.5px;line-height:1.5;color:#37403c;word-break:break-word}
+.photo-info small{color:var(--muted);font-size:12.5px}
+.photo-del{align-self:flex-start;margin-top:6px;border:0;background:none;color:var(--red);font:600 13px 'Be Vietnam Pro',sans-serif;cursor:pointer;padding:2px 0}
+.photo-del:hover{text-decoration:underline}
+.photo-empty{text-align:center;color:#c8d8d0;padding:30px 0}
+.photo-empty[hidden]{display:none}
+
+/* ===== Hộp thoại ===== */
+body.modal-open{overflow:hidden}
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(10,35,28,.72);backdrop-filter:blur(3px);overflow-y:auto}
+.modal[hidden]{display:none}
+.modal-box{position:relative;width:min(440px,100%);background:var(--paper);border-radius:var(--radius);padding:30px 28px 28px;box-shadow:0 24px 60px rgba(0,0,0,.4);border-top:6px solid var(--gold);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.modal-box h3{font-size:1.4rem;margin-bottom:14px}
+.modal-close{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;font-size:20px;cursor:pointer;color:var(--muted)}
+.modal-close:hover{background:#f1ead2}
+.tabs{display:flex;gap:6px;background:#f1ead2;padding:4px;border-radius:99px;margin-bottom:18px}
+.tab{flex:1;border:0;background:transparent;padding:9px 12px;border-radius:99px;font:600 14.5px 'Be Vietnam Pro',sans-serif;color:var(--forest);cursor:pointer}
+.tab.active{background:var(--forest);color:#fff}
+.field{display:block;margin-bottom:14px;font-weight:600;font-size:14.5px;color:var(--forest-dark)}
+.field[hidden]{display:none}
+.field input,.field textarea{display:block;width:100%;margin-top:6px;padding:11px 14px;border:1.5px solid #d9cfae;border-radius:12px;font:400 16px 'Be Vietnam Pro',sans-serif;background:#fff;color:var(--ink)}
+.field input:focus,.field textarea:focus{outline:3px solid rgba(232,184,46,.5);border-color:var(--gold)}
+.field textarea{resize:vertical}
+.hint{display:block;margin-top:4px;font-weight:400;font-size:13px;color:var(--muted)}
+.form-msg{min-height:22px;margin:-4px 0 10px;font-size:14.5px;color:var(--red);font-weight:500}
+.form-msg.ok{color:var(--forest)}
+.btn.full{width:100%;justify-content:center}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.drop{display:grid;place-items:center;gap:10px;min-height:150px;border:2px dashed #cdbf8d;border-radius:14px;padding:18px;margin-bottom:14px;text-align:center;cursor:pointer;background:#fffaf0;color:var(--forest-dark);font-weight:600;font-size:15px;transition:.2s}
+.drop:hover,.drop:focus-within{background:#fdf1cc;border-color:var(--gold)}
+.drop img{max-height:220px;width:auto;border-radius:10px}
+.drop img[hidden]{display:none}
+
+/* ===== Xem ảnh lớn ===== */
+.lightbox .modal-box{width:min(900px,100%);padding:14px;border-top:0;background:#0a231c;color:#fff}
+.lightbox img{display:block;max-height:76vh;width:100%;object-fit:contain;border-radius:10px;background:#000}
+.lightbox p{margin-top:10px;text-align:center;font-size:15px;min-height:1.5em}
+.lightbox .modal-close{color:#fff;background:rgba(0,0,0,.45);top:22px;right:22px;z-index:2}
+
+/* ===== Thông báo nhanh ===== */
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);background:var(--forest-dark);color:#fff;padding:12px 22px;border-radius:99px;border:1.5px solid var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s;z-index:200;font-size:15px;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:680px){
+  .auth{order:2;margin-left:auto;margin-right:10px}
+  .auth .hello{display:none}
+  .burger{order:3}
+  .community-head .btn{width:100%;justify-content:center}
+  .photo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .modal-box{padding:26px 20px 22px}
+}
+@media(max-width:380px){
+  .photo-grid{grid-template-columns:1fr}
+}
